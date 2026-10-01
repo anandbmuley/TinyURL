@@ -4,12 +4,10 @@ A URL shortener built with Spring Boot and React, backed by MongoDB. Paste a lon
 
 ## Design Requirements
 
-| # | Requirement |
-|---|-------------|
-| 1 | Global audience, English |
-| 2 | 2 million users |
-| 3 | 2% concurrency (~40k concurrent users) |
-| 4 | Link TTL of 7 days |
+- Global audience, English
+- 2 million users
+- 2% concurrency (~40k concurrent users)
+- Link TTL of 7 days
 
 See [`Plan.md`](./Plan.md) for the design doc (capacity math and roadmap). Note that Plan.md is partly aspirational: Redis caching, an API gateway and counter/Snowflake IDs are **not** implemented yet (see [Current limitations](#current-limitations)).
 
@@ -24,6 +22,26 @@ See [`Plan.md`](./Plan.md) for the design doc (capacity math and roadmap). Note 
 - **Local history** — the UI lists links you've created.
 - **Input validation** — http/https/ftp URLs only, max 2048 characters.
 - **Health and metrics** — Spring Actuator endpoints.
+
+## Screenshots
+
+### Shorten a URL
+
+![URL shortener](docs/screenshots/URL%20Shortner.png)
+
+Paste a long URL (or use the **Paste** button), optionally expand **Customize Short Link Alias**, and get a short link with a live TTL countdown, one-click **Copy** / **Visit**, and a backend health indicator in the header.
+
+### QR code
+
+![QR code for a short link](docs/screenshots/QR%20Code.png)
+
+**Show QR Code** reveals a scannable code for the short link, with a **Download QR Code (PNG)** button. Links you create are also kept in a **Recent Short Links** list with copy, open and analytics shortcuts.
+
+### Click analytics
+
+![Click analytics](docs/screenshots/Analytics.png)
+
+Look up any short code to see its target URL, total clicks, active/expired status, remaining TTL, and created, expiry and last-clicked timestamps.
 
 ## Tech Stack
 
