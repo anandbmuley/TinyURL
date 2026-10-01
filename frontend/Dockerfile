@@ -6,6 +6,9 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
+# Empty = same-origin; nginx proxies /api and /actuator to the backend
+ARG VITE_API_BASE_URL=""
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 RUN npm run build
 
 # Stage 2: Serve with Nginx
