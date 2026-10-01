@@ -1,0 +1,32 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: tinyurl-backend
+  threads:
+    virtual:
+      enabled: ${SPRING_THREADS_VIRTUAL_ENABLED:true}
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/tinyurl}
+      auto-index-creation: true
+
+app:
+  base-url: ${APP_BASE_URL:http://localhost:8081/}
+  default-ttl-days: ${APP_DEFAULT_TTL_DAYS:7}
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    com.tinyurl: DEBUG
